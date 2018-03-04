@@ -29,6 +29,19 @@ class test {
     require => Exec['fetch_from_gh'],
     mode => 0755,
   }
+
+  file {
+    'srcdir':
+      path => '/home/monitor/src',
+      ensure => 'directory',
+      require => File['/home/monitor/scripts/memory_check.sh'],
+    ;
+    '/home/monitor/src/my_memory_check':
+      path => '/home/monitor/src/my_memory_check.sh',
+      ensure => 'link',
+      require => [ File['srcdir'], File['/home/monitor/scripts/memory_check.sh'] ],
+      target => '/home/monitor/scripts/memory_check.sh'
+  }
 }
 
 node 'localhost' {
