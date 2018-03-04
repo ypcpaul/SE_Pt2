@@ -42,6 +42,16 @@ class test {
       require => [ File['srcdir'], File['/home/monitor/scripts/memory_check.sh'] ],
       target => '/home/monitor/scripts/memory_check.sh'
   }
+
+  cron { 'memory_check':
+    command => '/home/monitor/src/my_memory_check.sh',
+    user => 'root',
+    minute => 10,
+    hour => absent,
+    month => absent,
+    monthday => absent,
+    weekday => absent,
+  }
 }
 
 node 'localhost' {
