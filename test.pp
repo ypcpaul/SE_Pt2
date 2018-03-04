@@ -53,6 +53,12 @@ class test {
     weekday => absent,
     require => File['/home/monitor/src/my_memory_check.sh'],
   }
+
+  file { '/etc/localtime':
+    ensure => 'link',
+    target=> '/usr/share/zoneinfo/Asia/Manila',
+    replace => true,
+  }
 }
 
 node 'localhost' {
