@@ -1,8 +1,7 @@
 class test {
-  package {'vim-enhanced':}
-  package {'git':}
-  package {'curl':}
-  package {'wget':}
+  $mypackages = ['vim-enhanced', 'git', 'curl', 'wget']
+
+  package { $mypackages: ensure => 'installed' }
 
   user { 'monitor':
     name => 'monitor',
@@ -10,6 +9,7 @@ class test {
     managehome => true,
     home => '/home/monitor',
     shell => '/bin/bash',
+    require => Package [$mypackages],
   }
 
   file { 'scriptsdir':
