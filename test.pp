@@ -36,7 +36,7 @@ class test {
       ensure => 'directory',
       require => File['/home/monitor/scripts/memory_check.sh'],
     ;
-    '/home/monitor/src/my_memory_check':
+    '/home/monitor/src/my_memory_check.sh':
       path => '/home/monitor/src/my_memory_check.sh',
       ensure => 'link',
       require => [ File['srcdir'], File['/home/monitor/scripts/memory_check.sh'] ],
@@ -51,6 +51,7 @@ class test {
     month => absent,
     monthday => absent,
     weekday => absent,
+    require => File['/home/monitor/src/my_memory_check.sh'],
   }
 }
 
