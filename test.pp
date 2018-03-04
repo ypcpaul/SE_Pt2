@@ -1,9 +1,15 @@
 class test {
-  notify {'Packages':}
   package {'vim-enhanced':}
   package {'git':}
   package {'curl':}
-  notify {'Done with packages':}
+
+  user {'monitor':
+    name => 'monitor',
+    ensure => 'present',
+    managehome => true,
+    home => '/home/monitor',
+    shell => '/bin/bash',
+  }
 }
 
 node 'localhost' {
