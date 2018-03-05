@@ -59,8 +59,8 @@ class test {
     target=> '/usr/share/zoneinfo/Asia/Manila',
     replace => true,
   }
-}
 
-node 'localhost' {
-  include test
+  exec { 'set_hostname':
+    command => '/bin/hostname bpx.server.local'
+  }
 }
