@@ -63,4 +63,11 @@ class test {
   exec { 'set_hostname':
     command => '/bin/hostname bpx.server.local'
   }
+
+  file { '/etc/sysconfig/network':
+    path => '/etc/sysconfig/network',
+    ensure => file,
+    content => "NETWORKING=yes\nHOSTNAME=bpx.server.local",
+    require => Exec['set_hostname'],
+  }
 }
