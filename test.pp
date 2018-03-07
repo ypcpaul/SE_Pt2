@@ -1,5 +1,5 @@
 class test {
-  $mypackages = ['vim-enhanced', 'git', 'curl', 'wget']
+  $mypackages = ['vim-enhanced', 'git', 'curl', 'wget', 'mailx']
 
   package { $mypackages: ensure => 'installed' }
 
